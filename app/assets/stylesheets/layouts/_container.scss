@@ -1,0 +1,28 @@
+.container {
+  padding: var(--space-m);
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+
+  .buttons {
+    display: flex;
+    gap: var(--space-m);
+    flex-direction: column;
+  }
+
+  @include media(tabletAndUp) {
+    padding-right: var(--space-m);
+    padding-left: var(--space-m);
+    max-width: 60rem;
+  }
+
+  @include media(tabletAndDown) {
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: var(--space-s);
+    width: 90%;
+  }
+}

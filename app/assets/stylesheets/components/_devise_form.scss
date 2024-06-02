@@ -1,0 +1,26 @@
+.devise-form {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: var(--space-s);
+  padding: var(--space-xs);
+
+
+  fieldset {
+    border: none;
+    margin-top: var(--space-xs);
+  }
+
+  .alert {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  input {
+    margin-bottom: 1em;
+    color: black;
+  }
+}
