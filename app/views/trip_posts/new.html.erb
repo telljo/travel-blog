@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="header">
+    <h1>New post</h1>
+  </div>
+
+  <div class="trip-post">
+    <div class="container__trip-post__content">
+      <div class="trip-post_titles">
+        <h1>
+          <%= @trip.name %>
+        </h1>
+      </div>
+      <%= render partial: "form", locals: { trip: @trip } %>
+    </div>
+  </div>
+</div>

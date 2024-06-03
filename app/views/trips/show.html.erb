@@ -1,10 +1,17 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @trip %>
+
+<h2>Posts<h2>
+
+<% if current_user == @trip.user %>
+  <div class="container">
+    <%= render partial: 'trip_posts/form', locals: { trip: @trip, trip_post: @trip_post } %>
+  </div>
+<% end %>
+
+<%= render @trip.trip_posts %>
 
 <div>
   <%= link_to "Edit this trip", edit_trip_path(@trip) %> |
   <%= link_to "Back to trips", trips_path %>
-
   <%= button_to "Destroy this trip", @trip, method: :delete %>
 </div>

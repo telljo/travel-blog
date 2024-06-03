@@ -1,12 +1,7 @@
 <div id="<%= dom_id trip %>">
-  <p>
-    <strong>Name:</strong>
-    <%= trip.name %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= trip.user_id %>
-  </p>
-
+  <h1>
+    <%= link_to trip.name,
+        trip_path(trip),
+        data: { turbo_frame: "_top" } %>
+  </h1>
 </div>

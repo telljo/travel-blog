@@ -9,7 +9,9 @@ class TripsController < ApplicationController
   end
 
   # GET /trips/1 or /trips/1.json
-  def show; end
+  def show
+    @trip_post ||= @trip.trip_posts.new
+  end
 
   # GET /trips/new
   def new

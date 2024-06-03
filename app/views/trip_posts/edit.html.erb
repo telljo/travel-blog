@@ -1,0 +1,9 @@
+<%= turbo_frame_tag @trip_post do %>
+  <div class="container">
+    <div class="trip-post">
+      <div class="trip-post__content">
+        <%= render partial: "form", locals: { trip_post: @trip_post } %>
+      </div>
+    </div>
+  </div>
+<% end %>

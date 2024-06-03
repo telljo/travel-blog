@@ -1,0 +1,13 @@
+<%= turbo_stream_from trip, "trip-posts" %>
+
+<div class="container">
+  <div class="trip-posts__titles">
+    <h1>
+      Posts for <%= @trip.title %>
+    </h1>
+  </div>
+
+  <%= turbo_frame_tag "trip-posts" do %>
+    <%= render @trip_posts %>
+  <% end %>
+</div>
