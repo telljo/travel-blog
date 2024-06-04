@@ -4,9 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   # GET /posts
-  def index
-    @posts = Post.all
-  end
+  def index; end
 
   # GET /posts/1
   def show; end
@@ -14,32 +12,28 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit; end
 
-  def new
-    @trip = Trip.find(params[:trip_id])
-    @post = @trip.posts.new
-  end
+  def new; end
 
   # POST /posts
   def create
-    @trip = Trip.find(post_params[:trip_id])
-    @post = @trip.posts.build(post_params)
+    @trip = Trip.find(params[:trip_id])
+    @post = Post.new(post_params)
+    @post.trip = @trip
 
     if @post.save
-      respond_to do |format|
-        format.html { redirect_to trip_url(@trip), notice: 'Post was successfully created.' }
-      end
+      flash[:notice] = 'Post was successfully created.'
+      redirect_to @trip
     else
-      render :new, status: :unprocessable_entity
+      render 'trips/show', status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /posts/1
   def update
+    @post = Post.find(params[:id])
+
     if @post.update(post_params)
-      respond_to do |format|
-        format.html { redirect_to trip_url(@trip), notice: 'Post was successfully updated.' }
-        format.turbo_stream { flash.now[:notice] = 'Post was successfully updated.' }
-      end
+      redirect_to @post
     else
       render :edit, status: :unprocessable_entity
     end

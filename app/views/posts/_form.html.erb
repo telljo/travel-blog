@@ -1,26 +1,26 @@
-<%= simple_form_for [trip, post] do |f| %>
+<%= form_with(id: "post_form", model: [@trip, post]) do |form| %>
   <div class="form">
-    <% if @post.errors.any? %>
+    <% if post.errors.any? %>
       <div class="error-message">
-        <%= @post.errors.full_messages.to_sentence.capitalize %>
+        <%= post.errors.full_messages.to_sentence.capitalize %>
       </div>
     <% end %>
 
     <fieldset class="form__input">
       <% if @trip %>
-        <%= f.input :trip_id, as: :hidden, input_html: { value: @trip.id } %>
+        <%= form.hidden_field :trip_id, value: @trip.id %>
       <% else %>
-        <%= f.input :trip_id, as: :hidden, input_html: { value: @post.trip.id } %>
+        <%= form.hidden_field :trip_id, value: post.trip.id %>
       <% end %>
-      <%= f.input :title, input_html: { autofocus: true } %>
-      <%= f.input :body %>
+      <%= form.text_field :title, input_html: { autofocus: true } %>
+      <%= form.text_area :body %>
     </fieldset>
 
     <fieldset>
       <div class="form__buttons">
-        <%= f.submit class: "btn btn--secondary" %>
+        <%= form.submit class: "btn btn--secondary" %>
         <%= link_to "Cancel",
-            trip_url(@post.trip),
+            trip_url(@trip),
             data: { turbo_frame: "_top" },
             class: "btn btn--light" %>
       </div>

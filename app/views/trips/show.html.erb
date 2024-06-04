@@ -1,14 +1,15 @@
 <%= render @trip %>
 
-<h2>Posts<h2>
-
-<% if current_user == @trip.user %>
-  <div class="container">
-    <%= render partial: 'posts/form', locals: { trip: @trip, post: @post } %>
-  </div>
-<% end %>
-
-<%= render @trip.posts %>
+<h2>Trip posts</h2>
+<div id="container posts">
+  <% if current_user == @trip.user %>
+    <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
+  <% end %>
+  <%= turbo_stream_from @trip %>
+  <% @trip.posts.each do |post| %>
+    <%= render "posts/post", post: post %>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Edit this trip", edit_trip_path(@trip) %> |
