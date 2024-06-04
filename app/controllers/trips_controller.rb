@@ -10,7 +10,7 @@ class TripsController < ApplicationController
 
   # GET /trips/1 or /trips/1.json
   def show
-    @trip_post ||= @trip.trip_posts.new
+    @post = @trip.posts.new
   end
 
   # GET /trips/new

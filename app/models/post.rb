@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TripPost < ApplicationRecord
+class Post < ApplicationRecord
   belongs_to :trip
 
   validates :title, presence: true

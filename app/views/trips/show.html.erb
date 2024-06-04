@@ -4,11 +4,11 @@
 
 <% if current_user == @trip.user %>
   <div class="container">
-    <%= render partial: 'trip_posts/form', locals: { trip: @trip, trip_post: @trip_post } %>
+    <%= render partial: 'posts/form', locals: { trip: @trip, post: @post } %>
   </div>
 <% end %>
 
-<%= render @trip.trip_posts %>
+<%= render @trip.posts %>
 
 <div>
   <%= link_to "Edit this trip", edit_trip_path(@trip) %> |
