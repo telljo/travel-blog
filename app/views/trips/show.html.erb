@@ -1,11 +1,13 @@
 <%= render @trip %>
 
 <h2>Trip posts</h2>
-<div id="container posts">
-  <% if current_user == @trip.user %>
-    <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
-  <% end %>
-  <%= turbo_stream_from @trip %>
+
+<% if current_user == @trip.user %>
+  <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
+<% end %>
+
+<%= turbo_stream_from @trip %>
+<div>
   <% @trip.posts.each do |post| %>
     <%= render "posts/post", post: post %>
   <% end %>
