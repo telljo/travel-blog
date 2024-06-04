@@ -30,10 +30,9 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
-      redirect_to @post
+      flash[:notice] = 'Post was successfully updated.'
+      redirect_to @trip
     else
       render :edit, status: :unprocessable_entity
     end

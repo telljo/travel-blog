@@ -19,9 +19,7 @@
     <fieldset>
       <div class="form__buttons">
         <%= form.submit class: "btn btn--secondary" %>
-        <%= link_to "Cancel",
-            trip_url(@trip),
-            data: { turbo_frame: "_top" },
+        <%= link_to "Cancel", trip_url(@trip),
             class: "btn btn--light" %>
       </div>
     </fieldset>
