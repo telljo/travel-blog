@@ -4,8 +4,20 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2em;
-  background-color: var(--color-light);
-  border-radius: var(--border-radius);
+  background-color: var(--color-container);
+
+  border-style: solid;
+  border-radius: var(--borderRadius-medium, 6px);
+  border-width: var(--borderWidth-thin, 1px);
+  border-color: var(--color-border);
+
+  &--no_style {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 2em;
+    width: 100%;
+  }
 
   .buttons {
     display: flex;

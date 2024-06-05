@@ -6,22 +6,32 @@
       </div>
     <% end %>
 
-    <fieldset class="form__input">
+    <div class="form__field">
       <% if @trip %>
         <%= form.hidden_field :trip_id, value: @trip.id %>
       <% else %>
         <%= form.hidden_field :trip_id, value: post.trip.id %>
       <% end %>
-      <%= form.text_field :title, input_html: { autofocus: true } %>
-      <%= form.text_area :body %>
-    </fieldset>
+    </div>
 
-    <fieldset>
-      <div class="form__buttons">
-        <%= form.submit class: "btn btn--secondary" %>
-        <%= link_to "Cancel", trip_url(@trip),
-            class: "btn btn--light" %>
-      </div>
-    </fieldset>
+    <div class="form__field">
+      <%= form.label :title %><br />
+      <%= form.text_field :title,
+        class: "form__input",
+        input_html: { autofocus: true } %>
+    </div>
+
+    <div class="form__field">
+      <%= form.label :body %><br />
+      <%= form.text_area :body,
+        class: "form__input",
+        size: "30x3", required: true %>
+    </div>
+
+    <div class="form__actions">
+      <%= form.submit class: "btn btn--green" %>
+      <%= link_to "Cancel", trip_url(@trip),
+          class: "btn btn--light" %>
+    </div>
   </div>
 <% end %>

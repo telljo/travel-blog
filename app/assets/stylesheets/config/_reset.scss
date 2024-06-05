@@ -22,7 +22,7 @@ body {
   min-height: 100%;
 
   background-color: var(--color-background);
-  color: var(--color-text-body);
+  color: var(--color-primary);
   line-height: var(--line-height-body);
   font-family: var(--font-family-sans);
 }
@@ -47,7 +47,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--color-text-header);
+  color: var(--color-primary);
   line-height: var(--line-height-headers);
 }
 

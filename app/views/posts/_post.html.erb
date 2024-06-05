@@ -9,7 +9,7 @@
             </h4>
           </div>
           <div class="post__created_at">
-            <p><%= post.created_at&.strftime("%B %d, %Y") %> <p>
+            <p><%= post.created_at&.strftime("%B %d, %Y") %></p>
           </div>
         </div>
       </section>
@@ -28,10 +28,8 @@
               edit_post_path(post),
               class: "btn btn--primary" %>
           </div>
-          </div>
         <% end %>
-        </div>
-      </div>
+      </section>
     </div>
   </div>
 <% end %>

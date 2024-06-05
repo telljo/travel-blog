@@ -3,24 +3,20 @@
 .form {
   display: flex;
   flex-wrap: wrap;
-  padding: var(--space-m);
+  flex-direction: column;
   gap: var(--space-xs);
-  border-radius: var(--border-radius);
-  background-color: var(--color-white);
-  &__new-date {
-    margin-bottom: var(--space-m);
+
+  .form__field {
+    display: flex;
+    flex-direction: column;
   }
 
-  &__group {
-    flex: 1;
-  }
-
-  &__input {
+  .form__input {
     display: block;
     width: 100%;
-    max-width: 100%;
     padding: var(--space-xxs) var(--space-xs);
-    border: none;
+    border: var(--border);
+    border-radius: var(--border-radius);
     outline: none;
     transition: box-shadow 250ms;
 
@@ -31,5 +27,12 @@
     &--invalid {
       border-color: var(--color-primary);
     }
+  }
+
+  .form__actions {
+    display: flex;
+    gap: var(--space-xs);
+    justify-content: flex-end;
+    margin-top: 0.5em;
   }
 }

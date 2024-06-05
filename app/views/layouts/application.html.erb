@@ -14,10 +14,11 @@
 
   <body>
     <%= render "layouts/navbar" %>
-
-    <div id="flash" class="flash">
-      <%= render "layouts/flash" %>
+    <div class="container container--no_style">
+      <div id="flash" class="flash">
+        <%= render "layouts/flash" %>
+      </div>
+      <%= yield %>
     </div>
-    <%= yield %>
   </body>
 </html>
