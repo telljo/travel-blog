@@ -1,20 +1,15 @@
-<div class="container container--no_style">
-  <%= render @trip %>
+<%= render @trip %>
 
-  <h2>Trip posts</h2>
+<% if current_user == @trip.user %>
+  <h2>New post</h2>
+  <div class="container">
+    <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
+  </div>
+<% end %>
 
-  <% if current_user == @trip.user %>
-    <div class="container">
-      <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
-    </div>
-  <% end %>
+<h2>Trip posts</h2>
 
-  <%= turbo_stream_from @trip %>
-  <% @trip.posts.each do |post| %>
-    <%= render "posts/post", post: post %>
-  <% end %>
-
-  <%= link_to "Edit this trip", edit_trip_path(@trip) %> |
-  <%= link_to "Back to trips", trips_path %>
-  <%= button_to "Destroy this trip", @trip, method: :delete %>
-</div>
+<%= turbo_stream_from @trip %>
+<% @trip.posts.each do |post| %>
+  <%= render "posts/post", post: post %>
+<% end %>

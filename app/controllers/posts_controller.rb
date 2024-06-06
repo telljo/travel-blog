@@ -12,7 +12,10 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit; end
 
-  def new; end
+  def new
+    @trip = Trip.find(params[:trip_id])
+    @post = @trip.posts.new
+  end
 
   # POST /posts
   def create

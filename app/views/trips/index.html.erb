@@ -3,16 +3,13 @@
     <h1>Trips</h1>
     <p>Post short updates and collect a trip history.</p>
   </div>
+<%= link_to "New trip",
+  new_trip_path,
+  class: "btn btn--green" %>
+</div>
 
-  <div id="trips">
-    <% @trips.each do |trip| %>
-      <%= render trip %>
-      <p>
-        <%= link_to "Show this trip", trip %>
-      </p>
-    <% end %>
-  </div>
-
-<%= link_to "New trip", new_trip_path %>
-
+<div id="trips">
+  <% @trips.each do |trip| %>
+    <%= render trip %>
+  <% end %>
 </div>
