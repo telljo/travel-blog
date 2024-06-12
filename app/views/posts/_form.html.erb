@@ -30,8 +30,10 @@
 
     <div class="form__actions">
       <%= form.submit class: "btn btn--green" %>
-      <%= link_to "Cancel", trip_url(@trip),
-          class: "btn btn--light" %>
+      <% if post.persisted? %>
+        <%= link_to "Cancel", trip_url(@trip),
+            class: "btn btn--light" %>
+      <% end%>
     </div>
   </div>
 <% end %>

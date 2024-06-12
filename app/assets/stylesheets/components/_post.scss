@@ -9,4 +9,10 @@
     margin-bottom: 1em;
     outline: none;
   }
+  &__actions{
+    display: flex;
+    gap: var(--space-xs);
+    justify-content: flex-end;
+    margin-top: 0.5em;
+  }
 }

@@ -1,15 +1,13 @@
-<div class="container">
-  <div class="header">
-    <h1>Trips</h1>
-    <p>Post short updates and collect a trip history.</p>
-  </div>
-<%= link_to "New trip",
-  new_trip_path,
-  class: "btn btn--green" %>
+
+<div class="header">
+  <h1>Trips</h1>
+  <p>Explore peoples trips through simple posts with an image.</p>
 </div>
 
 <div id="trips">
   <% @trips.each do |trip| %>
-    <%= render trip %>
+    <div class="container">
+      <%= render trip %>
+    </div>
   <% end %>
 </div>

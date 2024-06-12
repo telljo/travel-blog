@@ -1,12 +1,9 @@
 .devise-form {
   display: flex;
   width: 500px;
-  justify-content: space-between;
-  margin: 0 auto;
   flex-direction: column;
-  gap: var(--space-s);
-  padding: var(--space-xs);
-
+  margin: 0 auto;
+  gap: var(--space-xs);
 
   fieldset {
     border: none;
@@ -19,8 +16,49 @@
     text-align: center;
   }
 
-  input {
-    margin-bottom: 1em;
-    color: black;
+  .devise-form__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-xs);
+  }
+
+  .devise-form__actions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+  }
+
+  .form__input {
+    display: block;
+    width: 100%;
+    padding: var(--space-xxs) var(--space-xs);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    outline: none;
+    transition: box-shadow 250ms;
+
+    &:focus {
+      box-shadow: 0 0 0 2px var(--color-glint);
+    }
+
+    &--invalid {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    justify-content: left;
+    input {
+      margin: 0.4em;
+      width: 1em;
+    }
+  }
+
+  @include media(tabletAndDown) {
+    width: 100%;
   }
 }

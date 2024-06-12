@@ -1,15 +1,18 @@
-<%= render @trip %>
+<div class="container">
+  <%= render @trip %>
+</div>
 
-<% if current_user == @trip.user %>
-  <h2>New post</h2>
-  <div class="container">
-    <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
-  </div>
-<% end %>
+  <% if current_user == @trip.user %>
+    <h2>New post</h2>
 
-<h2>Trip posts</h2>
+    <div class="container">
+      <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
+    </div>
+  <% end %>
 
-<%= turbo_stream_from @trip %>
-<% @trip.posts.each do |post| %>
-  <%= render "posts/post", post: post %>
-<% end %>
+  <h2>Trip posts</h2>
+
+  <%= turbo_stream_from @trip %>
+  <% @trip.posts.order(created_at: :desc).each do |post| %>
+    <%= render "posts/post", post: post %>
+  <% end %>

@@ -1,7 +1,7 @@
 
 <header class="navbar">
   <% if user_signed_in? %>
-    <p><%= current_user.email %></p>
+    <p><%= current_user.username %></p>
   <% else %>
   <div class="navbar__links">
     <%= link_to "Sign In",

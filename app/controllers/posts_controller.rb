@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_trip, only: %i[show edit update destroy]
 
   # GET /posts
   def index; end
@@ -52,9 +53,12 @@ class PostsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+    @trip = @post.trip
+  end
+
+  def set_trip
     @trip = @post.trip
   end
 
