@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   gap: var(--space-xs);
+  textarea { resize: none; }
 
   .form__field {
     display: flex;
@@ -26,6 +27,11 @@
 
     &--invalid {
       border-color: var(--color-primary);
+    }
+
+    &--dark {
+      background-color: var(--color-container);
+      color: var(--color-light);
     }
   }
 

@@ -14,5 +14,5 @@
 
   <%= turbo_stream_from @trip %>
   <% @trip.posts.order(created_at: :desc).each do |post| %>
-    <%= render "posts/post", post: post %>
+    <%= render post %>
   <% end %>

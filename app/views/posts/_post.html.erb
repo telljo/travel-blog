@@ -19,14 +19,13 @@
         </div>
         <% if post && post.persisted? && current_user == post.trip.user %>
           <div class="post__actions">
-            <%= button_to "Delete",
-                          post_path(post),
-                          method: :delete,
-                          class: "btn btn--red" %>
-
             <%= link_to "Edit post",
               edit_post_path(post),
               class: "btn btn--orange" %>
+            <%= button_to "Delete",
+                post_path(post),
+                method: :delete,
+                class: "btn btn--red" %>
           </div>
         <% end %>
       </section>
