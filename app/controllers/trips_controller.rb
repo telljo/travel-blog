@@ -25,11 +25,14 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to trip_url(@trip), notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
+        format.html do
+          flash[:notice] = 'Trip was successfully created.'
+          redirect_to trips_url
+        end
+        format.turbo_stream
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
+        format.html { render trips_url, status: :unprocessable_entity }
+        format.turbo_stream { render :new, status: :unprocessable_entity }
       end
     end
   end

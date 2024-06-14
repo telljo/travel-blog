@@ -4,9 +4,14 @@
   <p>Explore peoples trips through simple posts with an image.</p>
 </div>
 
-<%= link_to "New Trip", new_trip_path, class: "btn btn--green btn--large" %>
+<%= link_to "Create new trip",
+                new_trip_path,
+                class: "btn btn--green",
+                data: { turbo_frame: dom_id(Trip.new) } %>
 
 <div id="trips">
+  <%= turbo_frame_tag Trip.new %>
+
   <% @trips.each do |trip| %>
     <div class="container">
       <%= render trip %>
