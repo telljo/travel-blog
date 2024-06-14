@@ -4,13 +4,11 @@
   </div>
 
   <div class="post">
-    <div class="container__post__content">
-      <div class="post_titles">
-        <h1>
-          <%= @trip.name %>
-        </h1>
-      </div>
-      <%= render partial: "form", locals: { trip: @trip } %>
+    <div class="post___title">
+      <h1>
+        <%= @trip.name %>
+      </h1>
     </div>
+    <%= render partial: "form", locals: { trip: @trip } %>
   </div>
 </div>

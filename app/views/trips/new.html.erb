@@ -1,5 +1,10 @@
-<h1>New trip</h1>
-
 <%= turbo_frame_tag @trip do %>
-  <%= render "form", trip: @trip %>
+  <div class="header">
+    <h1>New trip</h1>
+  </div>
+  <div class="container">
+    <div class="trip">
+        <%= render "form", trip: @trip %>
+    </div>
+  </div>
 <% end %>

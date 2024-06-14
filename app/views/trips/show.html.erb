@@ -1,18 +1,28 @@
-<div class="container">
-  <%= render @trip %>
-</div>
+<%= render @trip %>
 
-  <% if current_user == @trip.user %>
-    <h2>New post</h2>
+<% if current_user == @trip.user %>
+  <div class="button-group">
+    <%= link_to "Edit trip",
+        edit_trip_path(@trip),
+        class: "btn btn--orange" %>
+    <%= button_to "Destroy this trip",
+        @trip, method: :delete,
+        class: "btn btn--red" %>
 
-    <div class="container">
-      <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
-    </div>
-  <% end %>
+    <%= link_to "Back to trips", trips_url,
+          class: "btn btn--light" %>
+  </div>
 
-  <h2>Trip posts</h2>
+  <h2>New post</h2>
 
-  <%= turbo_stream_from @trip %>
-  <% @trip.posts.order(created_at: :desc).each do |post| %>
-    <%= render post %>
-  <% end %>
+  <div class="container">
+    <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
+  </div>
+<% end %>
+
+<h2>Trip posts</h2>
+
+<%= turbo_stream_from @trip %>
+<% @trip.posts.order(created_at: :desc).each do |post| %>
+  <%= render post %>
+<% end %>

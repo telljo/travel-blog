@@ -1,20 +1,11 @@
-<div id="<%= dom_id trip %>">
-  <h1>
-    <%= link_to trip.name,
-        trip_path(trip),
-        data: { turbo_frame: "_top" } %>
-  </h1>
+<div class="container">
+  <div id="<%= dom_id trip %>">
+    <h1>
+      <%= link_to trip.name,
+          trip_path(trip),
+          data: { turbo_frame: "_top" } %>
+    </h1>
 
-  <p><%= trip.description  %></p>
-
-  <% if current_user == trip.user %>
-  <div class="button-group">
-      <%= link_to "Edit trip",
-          edit_trip_path(trip),
-          class: "btn btn--orange" %>
-      <%= button_to "Destroy this trip",
-          trip, method: :delete,
-          class: "btn btn--red" %>
-    </div>
-  <% end %>
+    <p><%= trip.description  %></p>
+  </div>
 </div>

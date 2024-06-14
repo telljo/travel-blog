@@ -9,12 +9,8 @@
                 class: "btn btn--green",
                 data: { turbo_frame: dom_id(Trip.new) } %>
 
-<div id="trips">
-  <%= turbo_frame_tag Trip.new %>
+<%= turbo_frame_tag Trip.new %>
 
-  <% @trips.each do |trip| %>
-    <div class="container">
-      <%= render trip %>
-    </div>
-  <% end %>
-</div>
+<%= turbo_frame_tag "trips" do %>
+  <%= render @trips.order(created_at: :desc) %>
+<% end %>

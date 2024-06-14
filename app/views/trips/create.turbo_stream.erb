@@ -1,1 +1,2 @@
 <%= turbo_stream.prepend "trips", partial: "trips/trip", locals: { trip: @trip } %>
+<%= turbo_stream.update Trip.new, "" %>
