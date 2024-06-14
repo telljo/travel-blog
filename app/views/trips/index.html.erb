@@ -4,6 +4,8 @@
   <p>Explore peoples trips through simple posts with an image.</p>
 </div>
 
+<%= link_to "New Trip", new_trip_path, class: "btn btn--green btn--large" %>
+
 <div id="trips">
   <% @trips.each do |trip| %>
     <div class="container">

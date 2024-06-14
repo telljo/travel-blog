@@ -9,9 +9,11 @@
   border: solid 2px transparent;
   font-weight: bold;
   text-decoration: none;
+  text-align: center;
   cursor: pointer;
   outline: none;
   transition: filter 400ms, color 200ms;
+  max-width: 12em;
 
   &:hover,
   &:focus,
@@ -21,6 +23,14 @@
   }
 
   // Modifiers will go there
+
+  &--large {
+    padding: var(--space-xs) var(--space-xxxl);
+  }
+
+  &--medium {
+    padding: var(--space-xxs) var(--space-xxl);
+  }
 
   &--orange {
     color: var(--color-white);
