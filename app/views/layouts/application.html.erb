@@ -14,10 +14,10 @@
 
   <body>
     <%= render "layouts/navbar" %>
-    <div class="container container--no_style">
-      <div id="flash" class="flash">
+    <div id="flash" class="flash">
         <%= render "layouts/flash" %>
       </div>
+    <div class="container container--no_style">
       <%= yield %>
     </div>
   </body>

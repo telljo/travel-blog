@@ -39,14 +39,11 @@ class TripsController < ApplicationController
 
   # PATCH/PUT /trips/1 or /trips/1.json
   def update
-    respond_to do |format|
-      if @trip.update(trip_params)
-        format.html { redirect_to trip_url(@trip), notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
+    if @trip.update(trip_params)
+      flash[:notice] = 'Trip was successfully updated.'
+      redirect_to trip_url(@trip)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -69,6 +66,6 @@ class TripsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def trip_params
-    params.require(:trip).permit(:name, :description, :user_id)
+    params.require(:trip).permit(:name, :description)
   end
 end

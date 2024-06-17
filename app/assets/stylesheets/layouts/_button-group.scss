@@ -1,5 +1,8 @@
 .button-group {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   gap: var(--space-m);
+  margin-top: var(--space-m);
+  margin-bottom: var(--space-m);
 }

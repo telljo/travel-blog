@@ -1,8 +1,8 @@
-<%= form_with(id: "post_form", model: [@trip, post]) do |form| %>
+<%= form_with(id: "post_form", model: [@trip, @post]) do |form| %>
   <div class="form">
-    <% if post.errors.any? %>
+    <% if @post.errors.any? %>
       <div class="error-message">
-        <%= post.errors.full_messages.to_sentence.capitalize %>
+        <%= @post.errors.full_messages.to_sentence.capitalize %>
       </div>
     <% end %>
 
@@ -10,30 +10,28 @@
       <% if @trip %>
         <%= form.hidden_field :trip_id, value: @trip.id %>
       <% else %>
-        <%= form.hidden_field :trip_id, value: post.trip.id %>
+        <%= form.hidden_field :trip_id, value: @post.trip.id %>
       <% end %>
     </div>
 
     <div class="form__field">
-      <%= form.label :title %><br />
       <%= form.text_field :title,
         class: "form__input form__input--dark",
+        placeholder: "Title",
         input_html: { autofocus: true } %>
     </div>
 
     <div class="form__field">
-      <%= form.label :body %><br />
       <%= form.text_area :body,
+        placeholder: "Body",
         class: "form__input form__input--dark",
         size: "30x3", required: true %>
     </div>
 
     <div class="form__actions">
       <%= form.submit class: "btn btn--green" %>
-      <% if post.persisted? %>
-        <%= link_to "Cancel", trip_url(@trip),
-            class: "btn btn--light" %>
-      <% end%>
+      <%= link_to "Cancel", trip_url(@trip),
+          class: "btn btn--light" %>
     </div>
   </div>
 <% end %>

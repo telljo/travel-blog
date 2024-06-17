@@ -24,11 +24,17 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.trip = @trip
 
-    if @post.save
-      flash[:notice] = 'Post was successfully created.'
-      redirect_to @trip
-    else
-      render 'trips/show', status: :unprocessable_entity
+    respond_to do |format|
+      if @post.save
+        format.html do
+          flash[:notice] = 'Post was successfully created.'
+          redirect_to @trip
+        end
+        format.turbo_stream
+      else
+        format.html { render @trip, status: :unprocessable_entity }
+        format.turbo_stream { render :new, status: :unprocessable_entity }
+      end
     end
   end
 

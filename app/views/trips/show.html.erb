@@ -1,28 +1,42 @@
-<%= render @trip %>
 
-<% if current_user == @trip.user %>
-  <div class="button-group">
-    <%= link_to "Edit trip",
-        edit_trip_path(@trip),
-        class: "btn btn--orange" %>
-    <%= button_to "Destroy this trip",
-        @trip, method: :delete,
-        class: "btn btn--red" %>
+<%= turbo_frame_tag dom_id(@trip) do %>
+  <div class="header">
+    <span>
+      <h1><%= @trip.name %></h1>
+      <p><%= @trip.description %></p>
+    </span>
 
-    <%= link_to "Back to trips", trips_url,
-          class: "btn btn--light" %>
-  </div>
-
-  <h2>New post</h2>
-
-  <div class="container">
-    <%= render "posts/form", post: @post.presence || Post.new, trip: @trip %>
+    <div class="button-group">
+      <% if current_user == @trip.user %>
+        <%= link_to "Back to trips", trips_url,
+            class: "btn btn--light",
+            data: { turbo_frame: "_top" } %>
+        <%= link_to "Edit trip",
+            edit_trip_path(@trip),
+            data: { turbo_frame: dom_id(@trip) },
+            class: "btn btn--orange" %>
+        <%= button_to "Destroy this trip",
+            @trip, method: :delete,
+            class: "btn btn--red" %>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
-<h2>Trip posts</h2>
+<%= turbo_frame_tag Post.new do %>
+  <div class="header">
+    <h2>Trip posts</h2>
+    <% if current_user == @trip.user %>
+      <%= link_to "Create new post",
+        new_post_path(trip_id: @trip.id),
+        class: "btn btn--green",
+        data: { turbo_frame: dom_id(Post.new) } %>
+    <% end %>
+  </div>
+<% end %>
 
 <%= turbo_stream_from @trip %>
-<% @trip.posts.order(created_at: :desc).each do |post| %>
-  <%= render post %>
+
+<%= turbo_frame_tag "posts" do %>
+  <%= render @trip.posts.order(created_at: :desc) %>
 <% end %>

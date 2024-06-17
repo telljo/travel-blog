@@ -1,14 +1,15 @@
-<div class="container">
+<%= turbo_frame_tag @post do %>
   <div class="header">
-    <h1>New post</h1>
+    <h2>Trip posts</h2>
   </div>
-
-  <div class="post">
-    <div class="post___title">
-      <h1>
-        <%= @trip.name %>
-      </h1>
+  <div class="container">
+    <div class="post">
+      <div class="post__title">
+        <h2>
+          <%= @trip.name %>
+        </h2>
+      </div>
+      <%= render partial: "form", locals: { trip: @trip, post: @post } %>
     </div>
-    <%= render partial: "form", locals: { trip: @trip } %>
   </div>
-</div>
+<% end %>

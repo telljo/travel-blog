@@ -1,13 +1,11 @@
 .header {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  gap: var(--space-s);
+  flex-direction: row;
   justify-content: space-between;
+  gap: var(--space-s);
   margin-top: var(--space-m);
   margin-bottom: var(--space-l);
+  align-items: center;
 
-  @include media(tabletAndUp) {
-    margin-bottom: var(--space-xl);
-  }
 }

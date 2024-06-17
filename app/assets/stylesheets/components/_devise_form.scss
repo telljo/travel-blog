@@ -3,12 +3,7 @@
   width: 500px;
   flex-direction: column;
   margin: 0 auto;
-  gap: var(--space-xs);
-
-  fieldset {
-    border: none;
-    margin-top: var(--space-xs);
-  }
+  gap: var(--space-m);
 
   .alert {
     color: red;
@@ -19,12 +14,13 @@
   .devise-form__inputs {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: var(--space-m);
     padding: var(--space-xs);
   }
 
   .devise-form__actions {
     display: flex;
+    padding-top: var(--space-m);
     flex-direction: row;
     gap: 0.5em;
   }

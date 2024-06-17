@@ -10,8 +10,10 @@
         <%= f.input :username,
           required: true,
           autofocus: true,
-          input_html: { autocomplete: "username", }
+          input_html: { autocomplete: "username" }
         %>
+      </div>
+
       <div class="field">
         <%= f.label :email %><br />
         <%= f.input :email, autocomplete: "email" %>
@@ -31,7 +33,7 @@
       </div>
     </div>
 
-    <div class="actions">
+    <div class="devise-form__actions">
       <%= button_tag "Sign up", class: "btn btn--green", type: :submit %>
     </div>
   <% end %>

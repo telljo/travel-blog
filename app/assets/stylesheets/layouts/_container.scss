@@ -15,11 +15,17 @@
   &--no_style {
     display: flex;
     flex-direction: column;
-    gap: var(--space-m);
+    gap: var(--space-xxs);
     background: none;
     border: none;
     padding: 0;
     margin-bottom: 2em;
+  }
+
+  &--link {
+    &:hover {
+      border: 1px solid var(--color-glint);
+    }
   }
 
   .buttons {
