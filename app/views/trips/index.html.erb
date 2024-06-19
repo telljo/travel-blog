@@ -8,7 +8,7 @@
       <%= link_to "Create new trip",
                   new_trip_path,
                   class: "btn btn--green",
-                  data: { turbo_frame: dom_id(Trip.new), action: "turbo:before-visit->toggle-button#hideButton turbo:render->toggle-button#showButton" } %>
+                  data: { turbo_frame: dom_id(Trip.new) } %>
 
     <% else %>
       <%= link_to "Create new trip",

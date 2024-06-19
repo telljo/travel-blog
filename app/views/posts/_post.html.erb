@@ -8,9 +8,27 @@
               <%= post.title %>
             </h4>
           </div>
-          <div class="post__created_at">
-            <p><%= post.created_at&.strftime("%B %d, %Y") %></p>
-          </div>
+          <% if post.updated_at != post.created_at %>
+            <div class="post__updated_at">
+              <p>
+                <%=
+                  link_to post.user.username,
+                  url_for(
+                    controller: '/users',
+                    action: 'show',
+                    username: post.user.username
+                  ),
+                  class: "text__link",
+                  data: { turbo_frame: "_top" }
+                %>
+                created this post on <%= post.updated_at&.strftime("%B %d, %Y") %>
+              </p>
+            </div>
+          <% else %>
+            <div class="post__created_at">
+              <p><%= post.user.username%> edited this post on <%= post.updated_at&.strftime("%B %d, %Y") %></p>
+            </div>
+          <% end %>
         </div>
       </section>
       <section class="post__section">

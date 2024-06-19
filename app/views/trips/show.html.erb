@@ -5,21 +5,20 @@
       <h1><%= @trip.name %></h1>
       <p><%= @trip.description %></p>
     </span>
-
-    <div class="button-group">
-      <% if current_user == @trip.user %>
-        <%= link_to "Back to trips", trips_url,
-            class: "btn btn--light",
-            data: { turbo_frame: "_top" } %>
-        <%= link_to "Edit trip",
-            edit_trip_path(@trip),
-            data: { turbo_frame: dom_id(@trip) },
-            class: "btn btn--orange" %>
-        <%= button_to "Destroy this trip",
-            @trip, method: :delete,
-            class: "btn btn--red" %>
-      <% end %>
-    </div>
+  </div>
+  <div class="button-group">
+    <% if current_user == @trip.user %>
+      <%= link_to "Back", trips_url,
+          class: "btn btn--light",
+          data: { turbo_frame: "_top" } %>
+      <%= link_to "Edit trip",
+          edit_trip_path(@trip),
+          data: { turbo_frame: dom_id(@trip) },
+          class: "btn btn--orange" %>
+      <%= button_to "Delete trip",
+          @trip, method: :delete,
+          class: "btn btn--red" %>
+    <% end %>
   </div>
 <% end %>
 

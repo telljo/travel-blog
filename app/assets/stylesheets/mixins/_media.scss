@@ -1,7 +1,8 @@
-// app/assets/stylesheets/mixins/_media.scss
-
 @mixin media($query) {
   @if $query == tabletAndUp {
     @media (min-width: 50rem) { @content; }
+  }
+  @if $query == tabletAndDown {
+    @media (max-width: 50rem) { @content; }
   }
 }

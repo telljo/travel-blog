@@ -20,6 +20,10 @@
     border: none;
     padding: 0;
     margin-bottom: 2em;
+
+    @include media(tabletAndDown) {
+      width: 90%;
+    }
   }
 
   &--link {
@@ -38,12 +42,15 @@
     padding-right: var(--space-m);
     padding-left: var(--space-m);
     max-width: 60rem;
+
+    &--no_style {
+      padding: 0;
+    }
   }
 
   @include media(tabletAndDown) {
     margin: auto;
     margin-top: 0;
     margin-bottom: var(--space-s);
-    width: 90%;
   }
 }

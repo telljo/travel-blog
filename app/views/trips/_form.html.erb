@@ -13,14 +13,18 @@
     <% end %>
 
     <div class="form__field">
-      <%= form.label :name %><br />
+      <% unless @trip.persisted? %>
+        <%= form.label "Add a title" %><br />
+      <% end %>
       <%= form.text_field :name,
         class: "form__input form__input--dark",
         input_html: { autofocus: true } %>
     </div>
 
     <div class="form__field">
-      <%= form.label :description %><br />
+      <% unless @trip.persisted? %>
+        <%= form.label "Add a description" %><br />
+      <% end %>
       <%= form.text_field :description,
         class: "form__input form__input--dark" %>
     </div>

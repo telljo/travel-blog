@@ -72,3 +72,12 @@ a {
   text-decoration: none;
   transition: color 200ms;
 }
+
+.text {
+  &__link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: color 200ms;
+    font-weight: 600;
+  }
+}

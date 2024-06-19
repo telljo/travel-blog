@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
+
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
