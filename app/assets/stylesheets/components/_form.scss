@@ -4,8 +4,19 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
   textarea { resize: none; }
+
+  .form__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      padding-right: 0.7em;
+    }
+  }
 
   .form__field {
     display: flex;
@@ -32,6 +43,28 @@
     &--dark {
       background-color: var(--color-container);
       color: var(--color-light);
+    }
+
+    &--short {
+      width: 50%;
+    }
+
+    &--body {
+      min-height: 6em;
+    }
+
+    &--h2 {
+      color: var(--color-primary);
+      line-height: var(--line-height-headers);
+      font-size: var(--font-size-xxl);
+      font-weight: bold;
+    }
+
+    &--h4 {
+      color: var(--color-primary);
+      line-height: var(--line-height-headers);
+      font-size: var(--font-size-l);
+      font-weight: bold;
     }
   }
 

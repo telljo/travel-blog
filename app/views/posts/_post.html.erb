@@ -8,26 +8,33 @@
               <%= post.title %>
             </h4>
           </div>
-          <% if post.updated_at != post.created_at %>
-            <div class="post__updated_at">
-              <p>
-                <%=
-                  link_to post.user.username,
-                  url_for(
-                    controller: '/users',
-                    action: 'show',
-                    username: post.user.username
-                  ),
-                  class: "text__link",
-                  data: { turbo_frame: "_top" }
-                %>
-                created this post on <%= post.updated_at&.strftime("%B %d, %Y") %>
-              </p>
-            </div>
+          <% if post.created_at === post.updated_at %>
+            <p>
+              <%=
+                link_to post.user.username,
+                url_for(
+                  controller: '/users',
+                  action: 'show',
+                  username: post.user.username
+                ),
+                class: "text__link",
+                data: { turbo_frame: "_top" }
+              %>
+              created this post on <%= post.updated_at&.strftime("%B %d, %Y") %>
+            </p>
           <% else %>
-            <div class="post__created_at">
-              <p><%= post.user.username%> edited this post on <%= post.updated_at&.strftime("%B %d, %Y") %></p>
-            </div>
+            <p>
+              <%=
+                link_to post.user.username,
+                url_for(
+                  controller: '/users',
+                  action: 'show',
+                  username: post.user.username
+                ),
+                class: "text__link",
+                data: { turbo_frame: "_top" }
+              %>
+              edited this post on <%= post.updated_at&.strftime("%B %d, %Y") %></p>
           <% end %>
         </div>
       </section>
@@ -43,6 +50,7 @@
             <%= button_to "Delete",
                 post_path(post),
                 method: :delete,
+                form: { data: { 'turbo-confirm': 'Are you sure?' } },
                 class: "btn btn--red" %>
           </div>
         <% end %>

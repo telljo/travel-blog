@@ -1,5 +1,5 @@
 .post {
-  .post__body {
+  &__body {
     border: 1px solid #bbb;
     border-radius: 4px;
     margin: 0;
@@ -10,18 +10,19 @@
     outline: none;
   }
 
-  .post__actions{
+  &__actions{
     display: flex;
     gap: var(--space-xs);
     justify-content: flex-end;
     margin-top: 0.5em;
   }
 
-  .post__header {
+  &__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: 2px solid var(--color-container);
+    margin-top: 0.2em;
+    padding: 0.6em 0.6em 0 0.5em;
   }
-
-
 }

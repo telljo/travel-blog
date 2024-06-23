@@ -15,16 +15,49 @@
     </div>
 
     <div class="form__field">
-      <%= form.text_field :title,
-        class: "form__input form__input--dark",
-        placeholder: "Title",
-        input_html: { autofocus: true } %>
+      <div class="form__header">
+        <%= form.text_field :title,
+          class: "form__input form__input--dark form__input--short form__input--h4",
+          placeholder: "Add a title",
+          input_html: { autofocus: true } %>
+
+        <% if @post.persisted? %>
+          <% if post.created_at === post.updated_at %>
+            <p>
+              <%=
+                link_to post.user.username,
+                url_for(
+                  controller: '/users',
+                  action: 'show',
+                  username: post.user.username
+                ),
+                class: "text__link",
+                data: { turbo_frame: "_top" }
+              %>
+              created this post on <%= post.updated_at&.strftime("%B %d, %Y") %>
+            </p>
+          <% else %>
+            <p>
+              <%=
+                link_to post.user.username,
+                url_for(
+                  controller: '/users',
+                  action: 'show',
+                  username: post.user.username
+                ),
+                class: "text__link",
+                data: { turbo_frame: "_top" }
+              %>
+              edited this post on <%= post.updated_at&.strftime("%B %d, %Y") %></p>
+          <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div class="form__field">
       <%= form.text_area :body,
-        placeholder: "Body",
-        class: "form__input form__input--dark",
+        placeholder: "Add a description",
+        class: "form__input form__input--dark form__input--body",
         size: "30x3", required: true %>
     </div>
 

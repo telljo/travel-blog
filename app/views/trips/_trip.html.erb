@@ -1,11 +1,45 @@
 <%= link_to trip_path(trip), data: { turbo_frame: "_top" } do %>
-  <div class="container container--link">
-    <div id="<%= dom_id trip %>">
-      <h2>
-        <%= trip.name %>
-      </h2>
+  <div class="container container--link trip ">
+    <div class="trip__content" id="<%= dom_id trip %>">
+      <div class="trip__header">
+        <h2>
+          <%= trip.name %>
+        </h2>
 
-      <p><%= trip.description  %></p>
+        <object type="trip-link">
+          <% if trip.created_at === trip.updated_at %>
+            <p>
+              <%=
+                link_to trip.user.username,
+                url_for(
+                  controller: '/users',
+                  action: 'show',
+                  username: trip.user.username
+                ),
+                class: "text__link",
+                data: { turbo_frame: "_top" }
+              %>
+              created this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %>
+            </p>
+          <% else %>
+            <p>
+              <%=
+                link_to trip.user.username,
+                url_for(
+                  controller: '/users',
+                  action: 'show',
+                  username: trip.user.username
+                ),
+                class: "text__link",
+                data: { turbo_frame: "_top" }
+              %>
+              edited this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %></p>
+          <% end %>
+        </object>
+      </div>
+      <div class="trip__body">
+        <p><%= trip.description  %></p>
+      </div>
     </div>
   </div>
 <% end %>

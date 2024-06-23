@@ -1,0 +1,22 @@
+.trip {
+  &__content {
+    margin: 0;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.7em;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: 0.7em;
+  }
+}

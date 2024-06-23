@@ -6,4 +6,6 @@ class Trip < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+
+  broadcasts_refreshes
 end

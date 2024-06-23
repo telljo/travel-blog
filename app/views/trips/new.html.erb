@@ -1,10 +1,4 @@
 <%= turbo_frame_tag @trip do %>
-  <div class="header">
-    <span>
-      <h1>Trips</h1>
-      <p>Explore peoples trips through simple posts with an image.</p>
-    </span>
-  </div>
   <div class="container">
     <div class="trip">
         <%= render "form", trip: @trip %>

@@ -1,11 +1,16 @@
 
 <%= turbo_frame_tag dom_id(@trip) do %>
-  <div class="header">
-    <span>
-      <h1><%= @trip.name %></h1>
-      <p><%= @trip.description %></p>
-    </span>
+  <div class="trip__content">
+    <div class="trip__header">
+      <h2>
+        <%= @trip.name %>
+      </h2>
+    </div>
+    <div class="trip__body">
+      <p><%= @trip.description  %></p>
+    </div>
   </div>
+
   <div class="button-group">
     <% if current_user == @trip.user %>
       <%= link_to "Back", trips_url,
@@ -17,14 +22,15 @@
           class: "btn btn--orange" %>
       <%= button_to "Delete trip",
           @trip, method: :delete,
+          data: { turbo: "false" },
+          form: { data: { 'turbo-confirm': 'Are you sure?' } },
           class: "btn btn--red" %>
     <% end %>
   </div>
 <% end %>
 
-<%= turbo_frame_tag Post.new do %>
-  <div class="header">
-    <h2>Trip posts</h2>
+ <div class="header">
+    <h2>Posts</h2>
     <% if current_user == @trip.user %>
       <%= link_to "Create new post",
         new_post_path(trip_id: @trip.id),
@@ -32,6 +38,11 @@
         data: { turbo_frame: dom_id(Post.new) } %>
     <% end %>
   </div>
+
+<%= turbo_frame_tag Post.new do %>
+   <% if @trip.posts.none? %>
+      <%= render "posts/empty_state" %>
+    <% end %>
 <% end %>
 
 <%= turbo_stream_from @trip %>

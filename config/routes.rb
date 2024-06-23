@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   root 'trips#index'
 
   get ':username', to: 'users#show', as: 'user'
+  get ':username/trips', to: 'trips#index'
 end

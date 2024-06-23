@@ -5,7 +5,12 @@ class TripsController < ApplicationController
 
   # GET /trips or /trips.json
   def index
-    @trips = Trip.all
+    @user = User.find_by(username: params[:username])
+    @trips = if @user.present?
+               @user.trips
+             else
+               Trip.all
+             end
   end
 
   # GET /trips/1 or /trips/1.json
@@ -49,11 +54,11 @@ class TripsController < ApplicationController
 
   # DELETE /trips/1 or /trips/1.json
   def destroy
-    @trip.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
-      format.json { head :no_content }
+    if @trip.destroy
+      flash[:notice] = 'Trip was successfully deleted.'
+      redirect_to trips_url
+    else
+      redirect_to trips_url, status: :unprocessable_entity
     end
   end
 

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="empty-state">
+    <p class="empty-state__text">
+      <strong>You don't have any posts yet.</strong>
+    </p>
+
+    <%= link_to "Add a post",
+          new_post_path(trip_id: @trip.id),
+          class: "btn btn--green",
+          data: { turbo_frame: dom_id(Post.new) } %>
+  </div>
+</div>
