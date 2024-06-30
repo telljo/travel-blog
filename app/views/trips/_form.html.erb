@@ -1,25 +1,46 @@
 <%= form_with(id: "trip_form", model: trip) do |form| %>
-  <div class="form">
-    <% if trip.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
-
-        <ul>
-          <% trip.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
+  <div class="form trip">
+    <div class="trip__header">
+      <div class="form__field">
+        <%= form.text_field :name,
+          class: "form__input form__input--dark form__input--h2",
+          placeholder: "Add a title",
+          input_html: { autofocus: true } %>
       </div>
-    <% end %>
-
-    <div class="form__field">
-      <%= form.text_field :name,
-        class: "form__input form__input--dark form__input--h2",
-        placeholder: "Add a title",
-        input_html: { autofocus: true } %>
     </div>
 
-    <div class="form__field">
+    <div class="trip__body-header">
+      <% if trip.created_at === trip.updated_at %>
+        <p>
+          <%=
+            link_to trip.user.username,
+            url_for(
+              controller: '/users',
+              action: 'show',
+              username: trip.user.username
+            ),
+            class: "text__link",
+            data: { turbo_frame: "_top" }
+          %>
+          created this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %>
+        </p>
+      <% else %>
+        <p>
+          <%=
+            link_to trip.user.username,
+            url_for(
+              controller: '/users',
+              action: 'show',
+              username: trip.user.username
+            ),
+            class: "text__link",
+            data: { turbo_frame: "_top" }
+          %>
+          edited this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %></p>
+      <% end %>
+    </div>
+
+    <div class="trip__body form__field">
       <%= form.text_area :description,
         placeholder: "Add a description",
         class: "form__input form__input--dark form__input--body" %>
@@ -35,5 +56,17 @@
           class: "btn btn--light" %>
       <% end %>
     </div>
+
+    <% if trip.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+        <ul>
+          <% trip.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 <% end %>

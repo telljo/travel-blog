@@ -76,8 +76,11 @@ a {
 .text {
   &__link {
     color: var(--color-primary);
-    text-decoration: underline;
     transition: color 200ms;
     font-weight: 600;
+    &:hover {
+      text-decoration: underline;
+      color: var(--color-primary-rotate);
+    }
   }
 }

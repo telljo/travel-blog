@@ -26,5 +26,9 @@
 <%= turbo_stream_from @trips %>
 
 <%= turbo_frame_tag "trips" do %>
-  <%= render @trips.order(created_at: :desc) %>
+  <% @trips.order(created_at: :desc).each do |trip| %>
+    <%= link_to trip_path(trip), data: { turbo_frame: "_top" } do %>
+      <%= render partial: 'trips/trip', locals: { trip: trip, additional_classes: "trip--link" } %>
+    <% end %>
+  <% end %>
 <% end %>

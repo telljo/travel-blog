@@ -1,5 +1,6 @@
-// app/assets/stylesheets/application.sass.scss
+// app/assets/stylesheets/application.scss
 
+// Fonts
 @import 'actiontext.css';
 
 // Mixins
@@ -23,6 +24,7 @@
 @import "components/post";
 @import "components/trip";
 @import "components/navbar_dropdown";
+@import "components/icon";
 
 // Layouts
 @import "layouts/container";

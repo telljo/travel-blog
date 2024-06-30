@@ -1,60 +1,67 @@
 <%= turbo_frame_tag dom_id(post) do %>
-  <div class="post container">
+  <div class="post">
     <div class="post__content">
-      <section class="post__section">
-        <div class="post__header">
-          <div class="post__titles">
-            <h4>
-              <%= post.title %>
-            </h4>
-          </div>
-          <% if post.created_at === post.updated_at %>
-            <p>
-              <%=
-                link_to post.user.username,
-                url_for(
-                  controller: '/users',
-                  action: 'show',
-                  username: post.user.username
-                ),
-                class: "text__link",
-                data: { turbo_frame: "_top" }
-              %>
-              created this post on <%= post.updated_at&.strftime("%B %d, %Y") %>
-            </p>
-          <% else %>
-            <p>
-              <%=
-                link_to post.user.username,
-                url_for(
-                  controller: '/users',
-                  action: 'show',
-                  username: post.user.username
-                ),
-                class: "text__link",
-                data: { turbo_frame: "_top" }
-              %>
-              edited this post on <%= post.updated_at&.strftime("%B %d, %Y") %></p>
-          <% end %>
-        </div>
-      </section>
-      <section class="post__section">
-        <div class="post__body">
-          <p><%= post.body %></p>
-        </div>
-        <% if post && post.persisted? && current_user == post.trip.user %>
-          <div class="post__actions">
+      <div class="post__header">
+        <h4>
+          <%= post.title %>
+        </h4>
+      </div>
+      <div class="post__body-header">
+        <% if post.created_at === post.updated_at %>
+          <p>
+            <%=
+              link_to post.user.username,
+              url_for(
+                controller: '/users',
+                action: 'show',
+                username: post.user.username
+              ),
+              class: "text__link",
+              data: { turbo_frame: "_top" }
+            %>
+            created this post on <%= post.updated_at&.strftime("%B %d, %Y") %>
+          </p>
+        <% else %>
+          <p>
+            <%=
+              link_to post.user.username,
+              url_for(
+                controller: '/users',
+                action: 'show',
+                username: post.user.username
+              ),
+              class: "text__link",
+              data: { turbo_frame: "_top" }
+            %>
+            edited this post on <%= post.updated_at&.strftime("%B %d, %Y") %></p>
+        <% end %>
+
+        <% if current_user == post.user %>
+          <div class="dropdown icon" data-controller="dropdown"
+              data-action="click->dropdown#toggle click@window->dropdown#hide"
+              data-dropdown-target="checkbox"
+              id="togglenav"
+              type="checkbox">
+            <i class="fas fa-ellipsis icon__edit">
+            </i>
+
+            <div data-dropdown-target="menu" class="dropdown__menu dropdown__menu--right dropdown__edit-menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <%= link_to "Edit post",
               edit_post_path(post),
-              class: "btn btn--orange" %>
+              class: "dropdown__menu-item" %>
             <%= button_to "Delete",
                 post_path(post),
                 method: :delete,
                 form: { data: { 'turbo-confirm': 'Are you sure?' } },
-                class: "btn btn--red" %>
+                class: "dropdown__menu-item" %>
+            </div>
           </div>
         <% end %>
-      </section>
+      </div>
+
+      <div class="post__body">
+        <p><%= post.body %></p>
+      </div>
     </div>
   </div>
 <% end %>

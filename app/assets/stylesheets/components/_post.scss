@@ -1,28 +1,44 @@
 .post {
-  &__body {
-    border: 1px solid #bbb;
-    border-radius: 4px;
+  &__content {
     margin: 0;
-    padding: 0.4em 0.6em;
-    min-height: 5em;
-    margin-top: 1em;
-    margin-bottom: 1em;
     outline: none;
+    display: flex;
+    flex-direction: column;
   }
 
-  &__actions{
+  &__body-header {
+    color: var(--color-muted);
     display: flex;
-    gap: var(--space-xs);
-    justify-content: flex-end;
-    margin-top: 0.5em;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5em 0.6em;
+    background-color: #2d333b;
+    border-style: solid;
+    border-radius: var(--borderRadius-medium, 6px);
+    border-width: var(--borderWidth-thin, 1px);
+    border-color: var(--color-border);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    min-height: 5em;
+    border-radius: var(--borderRadius-medium, 6px);
+    border-width: var(--borderWidth-thin, 1px);
+    border-color: var(--color-border);
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
 
   &__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 2px solid var(--color-container);
-    margin-top: 0.2em;
-    padding: 0.6em 0.6em 0 0.5em;
+    padding: 0.7em 0;
   }
 }
