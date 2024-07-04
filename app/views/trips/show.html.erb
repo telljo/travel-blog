@@ -2,7 +2,7 @@
 <%= turbo_frame_tag dom_id(@trip) do %>
   <div class="trip__content">
     <%= render partial: @trip,
-      locals: { additional_classes: "" } %>
+      locals: { has_link_header: false } %>
   </div>
 <% end %>
 

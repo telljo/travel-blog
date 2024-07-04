@@ -1,2 +1,2 @@
-<%= turbo_stream.prepend "trips", partial: "trips/trip", locals: { trip: @trip, additional_classes: "trip--link" } %>
+<%= turbo_stream.prepend "trips", partial: "trips/trip", locals: { trip: @trip, has_link_header: true } %>
 <%= turbo_stream.update Trip.new, "" %>

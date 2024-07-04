@@ -10,7 +10,7 @@
   cursor: pointer;
   color:  var(--color-muted);
 
-  &:hover {
+  &:hover, &--toggled {
     background-color: #909dab1f;
   }
 }

@@ -7,11 +7,9 @@
       <div class="hamburger"></div>
     </label>
   </div>
-  <div data-dropdown-target="menu" class="dropdown__menu dropdown__menu--right" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-    <div>
-      <%= link_to "Trips", trips_path, data: {action: "click->dropdown#toggle"},
-          class: "dropdown__menu-item" %>
-    </div>
+  <div data-dropdown-target="menu" class="dropdown__menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+    <%= link_to "Trips", trips_path, data: {action: "click->dropdown#toggle"},
+        class: "dropdown__menu-item" %>
     <% if user_signed_in? %>
       <div class="dropdown__menu_section">
         <a data-action="click->dropdown#toggle" class="dropdown__menu-item"

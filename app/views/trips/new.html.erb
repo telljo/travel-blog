@@ -1,7 +1,3 @@
 <%= turbo_frame_tag @trip do %>
-  <div class="container">
-    <div class="trip">
-        <%= render "form", trip: @trip %>
-    </div>
-  </div>
+  <%= render "form", trip: @trip %>
 <% end %>

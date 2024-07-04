@@ -1,11 +1,15 @@
-<div class="trip <%= additional_classes %>">
+<div class="trip">
   <div class="trip__content" id="<%= dom_id trip %>">
     <div class="trip__header">
-      <h2>
-        <%= trip.name %>
-      </h2>
+      <% if local_assigns[:has_link_header] %>
+        <%= link_to trip_path(trip), data: { turbo_frame: "_top" } do %>
+          <h2 class="text__link"><%= trip.name %></h2>
+        <% end %>
+      <% else %>
+        <h2><%= trip.name %></h2>
+      <% end %>
     </div>
-    <object class="trip__body-header" type="trip-link">
+    <div class="trip__body-header">
       <% if trip.created_at === trip.updated_at %>
         <p>
           <%=
@@ -36,15 +40,16 @@
       <% end %>
 
       <% if current_user == trip.user %>
-        <div class="dropdown icon" data-controller="dropdown"
+        <div class="dropdown" data-controller="dropdown"
           data-action="click->dropdown#toggle click@window->dropdown#hide"
           data-dropdown-target="checkbox"
           id="togglenav"
           type="checkbox">
-          <i class="fas fa-ellipsis icon__edit">
-          </i>
+          <div data-dropdown-target="icon" class="icon">
+            <i class="fas fa-ellipsis icon__edit"></i>
+          </div>
 
-          <div data-dropdown-target="menu" class="dropdown__menu dropdown__menu--right dropdown__edit-menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+          <div data-dropdown-target="menu" class="dropdown__menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <%= link_to "Edit trip",
                 edit_trip_path(trip),
                 data: { turbo_frame: dom_id(trip) },
@@ -53,11 +58,11 @@
                 trip, method: :delete,
                 data: { turbo: "false" },
                 form: { data: { 'turbo-confirm': 'Are you sure?' } },
-                class: "dropdown__menu-item" %>
+                class: "dropdown__menu-item dropdown__menu-item--danger" %>
           </div>
         </div>
       <% end %>
-    </object>
+    </div>
     <div class="trip__body">
       <p><%= trip.description  %></p>
     </div>

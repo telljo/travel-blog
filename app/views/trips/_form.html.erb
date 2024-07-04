@@ -10,33 +10,35 @@
     </div>
 
     <div class="trip__body-header">
-      <% if trip.created_at === trip.updated_at %>
-        <p>
-          <%=
-            link_to trip.user.username,
-            url_for(
-              controller: '/users',
-              action: 'show',
-              username: trip.user.username
-            ),
-            class: "text__link",
-            data: { turbo_frame: "_top" }
-          %>
-          created this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %>
-        </p>
-      <% else %>
-        <p>
-          <%=
-            link_to trip.user.username,
-            url_for(
-              controller: '/users',
-              action: 'show',
-              username: trip.user.username
-            ),
-            class: "text__link",
-            data: { turbo_frame: "_top" }
-          %>
-          edited this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %></p>
+      <% if trip.persisted? %>
+        <% if trip.created_at === trip.updated_at %>
+          <p>
+            <%=
+              link_to trip.user.username,
+              url_for(
+                controller: '/users',
+                action: 'show',
+                username: trip.user.username
+              ),
+              class: "text__link",
+              data: { turbo_frame: "_top" }
+            %>
+            created this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %>
+          </p>
+        <% else %>
+          <p>
+            <%=
+              link_to trip.user.username,
+              url_for(
+                controller: '/users',
+                action: 'show',
+                username: trip.user.username
+              ),
+              class: "text__link",
+              data: { turbo_frame: "_top" }
+            %>
+            edited this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %></p>
+        <% end %>
       <% end %>
     </div>
 
