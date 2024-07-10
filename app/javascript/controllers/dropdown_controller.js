@@ -12,10 +12,12 @@ export default class extends Controller {
       this.menuTarget.classList.add('dropdown__menu--toggled');
     }
 
-    if (this.iconTarget.classList.contains('icon--toggled')) {
-      this.iconTarget.classList.remove('icon--toggled');
-    } else {
-      this.iconTarget.classList.add('icon--toggled');
+    if (this.hasIconTarget) {
+      if (this.iconTarget.classList.contains('icon--toggled')) {
+        this.iconTarget.classList.remove('icon--toggled');
+      } else {
+        this.iconTarget.classList.add('icon--toggled');
+      }
     }
   }
 
@@ -27,7 +29,7 @@ export default class extends Controller {
       }
     }
 
-    if(!this.element.contains(event.target) && this.iconTarget.classList.contains('icon--toggled')) {
+    if (this.hasIconTarget && !this.element.contains(event.target) && this.iconTarget.classList.contains('icon--toggled')) {
       this.iconTarget.classList.remove('icon--toggled');
     }
   }

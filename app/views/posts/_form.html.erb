@@ -51,10 +51,17 @@
     </div>
 
     <div class="post__body form__field">
-      <%= form.text_area :body,
+      <%= form.rich_text_area :body,
         placeholder: "Add a description",
         class: "form__input form__input--dark form__input--body",
         size: "30x3", required: true %>
+    </div>
+
+    <div>
+      <div class="form__field">
+        <%= form.label :image %>
+        <%= form.file_field :image, accept: 'image/png,image/jpeg', class: "form__input form__input--dark" %>
+      </div>
     </div>
 
     <div class="form__actions">

@@ -62,7 +62,14 @@
       </div>
 
       <div class="post__body">
-        <p><%= post.body %></p>
+        <% if post.image.attached? %>
+          <div class="post__image">
+            <%= link_to image_tag(post.image_as_thumbnail), post.image %>
+          </div>
+        <% end %>
+        <div class="post__body-text">
+          <%= post.body %>
+        </div>
       </div>
     </div>
   </div>

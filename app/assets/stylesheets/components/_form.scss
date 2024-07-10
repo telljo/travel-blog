@@ -20,6 +20,15 @@
   .form__field {
     display: flex;
     flex-direction: column;
+
+    .trix-button-group {
+      color: black;
+      background: white;
+    }
+
+    .trix-button-group--file-tools {
+      display: none !important;
+    }
   }
 
   .form__input {
