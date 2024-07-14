@@ -10,7 +10,7 @@
       <% end %>
     </div>
     <div class="trip__body-header">
-      <% if trip.created_at === trip.updated_at %>
+      <% if trip.created_at.to_i == trip.updated_at.to_i %>
         <p>
           <%=
             link_to trip.user.username,

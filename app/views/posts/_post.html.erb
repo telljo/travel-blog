@@ -7,7 +7,7 @@
         </h4>
       </div>
       <div class="post__body-header">
-        <% if post.created_at === post.updated_at %>
+        <% if post.created_at.to_i == post.updated_at.to_i %>
           <p>
             <%=
               link_to post.user.username,

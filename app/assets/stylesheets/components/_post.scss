@@ -37,6 +37,40 @@
     border-top-left-radius: 0;
   }
 
+  .post__form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0 1em 1em 1em;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    min-height: 5em;
+    border-radius: var(--borderRadius-medium, 6px);
+    border-width: var(--borderWidth-thin, 1px);
+    border-color: var(--color-border);
+
+    trix-toolbar {
+      padding: 0.5em 0.6em;
+      position: relative;
+      left: -1em;
+      height: 3em;
+      width: calc(100% + 2em);;
+      background-color: #2d333b;
+      border-style: solid;
+      border-radius: var(--borderRadius-medium, 6px);
+      border-width: var(--borderWidth-thin, 1px);
+      border-color: var(--color-border);
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .trix-button-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
   &__body-text {
     display: flex;
     flex-direction: column;
@@ -52,7 +86,7 @@
   }
 
   &__image {
-    width: 300px;
+    width: fit-content;
     display: flex;
     a {
       width: fit-content;

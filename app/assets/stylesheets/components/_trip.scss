@@ -43,6 +43,12 @@
     border-bottom-left-radius: 0;
   }
 
+  &__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
   &--link {
     .dropdown {
       display: none;

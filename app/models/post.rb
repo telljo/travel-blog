@@ -13,10 +13,20 @@ class Post < ApplicationRecord
 
   broadcasts_refreshes_to :trip
 
+  attr_accessor :remove_image
+
+  after_save :purge_image, if: :remove_image
+
   def image_as_thumbnail
     return unless image.content_type.in?(%w[image/jpeg image/png])
 
     image.variant(resize_to_limit: [300, 300]).processed
+  end
+
+  private
+
+  def purge_image
+    image.purge_later
   end
 
   def image_type

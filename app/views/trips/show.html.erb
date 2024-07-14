@@ -22,13 +22,13 @@
   </div>
 
 <%= turbo_frame_tag Post.new do %>
-   <% if @trip.posts.none? %>
+  <% if @trip.posts.none? %>
       <%= render "posts/empty_state" %>
     <% end %>
 <% end %>
 
 <%= turbo_stream_from @trip %>
 
-<%= turbo_frame_tag "posts" do %>
+<%= turbo_frame_tag "posts", class: "trip__posts" do %>
   <%= render @trip.posts.order(created_at: :desc) %>
 <% end %>
