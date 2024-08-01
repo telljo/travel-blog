@@ -3,6 +3,7 @@
 class Post < ApplicationRecord
   belongs_to :trip
   has_one :user, through: :trip
+  reverse_geocoded_by :latitude, :longitude
 
   validates :title, presence: true
   validates :body, presence: true
@@ -15,6 +16,7 @@ class Post < ApplicationRecord
 
   attr_accessor :remove_image
 
+  after_validation :reverse_geocode
   after_save :purge_image, if: :remove_image
 
   def image_as_thumbnail

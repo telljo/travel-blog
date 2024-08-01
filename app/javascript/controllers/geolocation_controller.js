@@ -1,29 +1,53 @@
-// app/javascript/controllers/geolocation_controller.js
 import { Controller } from "@hotwired/stimulus"
 
-const options = {
-  enableHighAccuracy: true,
-  maximumAge: 0
-};
-
-// Connects to data-controller="geolocation"
 export default class extends Controller {
-  static values = { url: String }
+  static targets = ["input"];
 
-  search() {
-    navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error, options);
+  handleClick() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        this.handleSuccess.bind(this),
+        this.handleError.bind(this)
+      )
+    } else {
+      console.error("Geolocation is not supported by this browser.")
+    }
   }
 
-  success(pos) {
-    const crd = pos.coords;
-    // redirect with coordinates in params
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    // location.assign(`/locations/?place=${crd.latitude},${crd.longitude}`)
+  handleSuccess(position) {
+    const { latitude, longitude } = position.coords;
+    this.sendLocationToRails(latitude, longitude);
   }
 
-  error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+  handleError(error) {
+    console.error(`Geolocation error: ${error.message}`);
+  }
+
+  sendLocationToRails(latitude, longitude) {
+    const csrfToken = document.querySelector("meta[name=csrf-token]").content;
+
+    fetch('/find_location', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify({ latitude, longitude }),
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('HTTP error ' + response.status);
+      }
+    }).then(resp => {
+      console.log(resp.data)
+      this.inputTarget.value = resp.data.formatted_address;
+    }).catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+  }
+
+  change(event) {
+    console.log(event.target.value);
   }
 }

@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "geolocations" do %>
+  <% if @geolocations.present? %>
+    <%= form.select :geolocation, @geolocations, {}, html: { class: "form-select" }, multiple: true, data: { action: "change->geolocation#change" } %>
+  <% end %>
+<% end %>

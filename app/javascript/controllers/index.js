@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
 import GeolocationController from "./geolocation_controller"
 application.register("geolocation", GeolocationController)
 
@@ -13,5 +16,5 @@ application.register("hello", HelloController)
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 
-import DropdownController from "./dropdown_controller"
-application.register("dropdown", DropdownController)
+import SearchController from "./search_controller"
+application.register("search", SearchController)
