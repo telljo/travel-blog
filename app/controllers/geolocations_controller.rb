@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GeolocationsController < ApplicationController
   def search
     @geolocations = Geocoder.search(params[:geolocations][:query])

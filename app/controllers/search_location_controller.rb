@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchLocationController < ApplicationController
   def create
     latitude = params[:latitude]
