@@ -3,10 +3,9 @@
 class Post < ApplicationRecord
   belongs_to :trip
   has_one :user, through: :trip
-  reverse_geocoded_by :latitude, :longitude
-
   validates :title, presence: true
   validates :body, presence: true
+  geocoded_by :address
 
   has_rich_text :body
   has_one_attached :image, dependent: :destroy
@@ -16,8 +15,9 @@ class Post < ApplicationRecord
 
   attr_accessor :remove_image
 
-  after_validation :reverse_geocode
   after_save :purge_image, if: :remove_image
+
+  after_validation :geocode, if: :address_changed?
 
   def image_as_thumbnail
     return unless image.content_type.in?(%w[image/jpeg image/png])

@@ -1,9 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input"];
+  static targets = ["address", "latitude", "longitude"];
 
-  handleClick() {
+  findLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         this.handleSuccess.bind(this),
@@ -26,7 +26,7 @@ export default class extends Controller {
   sendLocationToRails(latitude, longitude) {
     const csrfToken = document.querySelector("meta[name=csrf-token]").content;
 
-    fetch('/find_location', {
+    fetch('/geolocations/find_location', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,14 +40,11 @@ export default class extends Controller {
         throw new Error('HTTP error ' + response.status);
       }
     }).then(resp => {
-      console.log(resp.data)
-      this.inputTarget.value = resp.data.formatted_address;
+      this.addressTarget.value = resp.data.formatted_address;
+      this.longitudeTarget.value = resp.data.geometry.location.lng;
+      this.latitudeTarget.value = resp.data.geometry.location.lat;
     }).catch(error => {
       console.error('There was a problem with the fetch operation:', error);
     });
-  }
-
-  change(event) {
-    console.log(event.target.value);
   }
 }

@@ -20,6 +20,7 @@
   .form__field {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     .trix-button-group {
       color: black;
@@ -74,6 +75,13 @@
       font-size: var(--font-size-l);
       font-weight: bold;
     }
+  }
+
+  .form__location-search {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+    align-items: end;
   }
 
   .form__actions {

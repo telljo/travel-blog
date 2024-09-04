@@ -59,6 +59,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_22_212904) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "address"
+    t.index ["latitude"], name: "index_posts_on_latitude"
+    t.index ["longitude"], name: "index_posts_on_longitude"
     t.index ["trip_id"], name: "index_posts_on_trip_id"
   end
 

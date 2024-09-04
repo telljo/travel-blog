@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :geolocations do
     collection do
       get :search
+      post :find_location
     end
   end
   post 'geolocations', to: 'geolocations#find_location'
