@@ -5,6 +5,9 @@
   &__text {
     font-size: var(--font-size-l);
     color: var(--color-text-header);
-    margin-bottom: var(--space-l);
+  }
+
+  .btn {
+    margin-top: var(--space-s);
   }
 }

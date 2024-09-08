@@ -5,6 +5,7 @@
         <h4>
           <%= post.title %>
         </h4>
+        <p class="post__address"><%= post.address %></p>
       </div>
       <div class="post__body-header">
         <% if post.created_at.to_i == post.updated_at.to_i %>

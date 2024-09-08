@@ -87,6 +87,22 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 0.7em 0;
+
+    &--column {
+      flex-direction: column;
+      gap: 0.5em;
+    }
+  }
+
+  &__address {
+    color: var(--color-muted);
+    size: 0.8em;
+  }
+
+  &__address-icon {
+    color: var(--color-muted);
+    size: 0.8em;
+    margin-right: 0.5em;
   }
 
   &__image {
