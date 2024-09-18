@@ -5,6 +5,7 @@ import "@fortawesome/fontawesome-free/js/all"
 
 import "trix"
 import "@rails/actiontext"
+import "mapkick/bundle"
 
 document.addEventListener("trix-file-accept", (e) => {
   e.preventDefault()

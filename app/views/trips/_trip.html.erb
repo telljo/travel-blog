@@ -65,6 +65,19 @@
     </div>
     <div class="trip__body">
       <p><%= trip.description  %></p>
+
+      <%=
+        # js_map [{latitude: trip.posts.last.latitude, longitude: trip.posts.last.longitude}]
+        js_map trip.posts.map do | post|
+          {
+            latitude: post.latitude,
+            longitude: post.longitude,
+            label: post.title,
+            tooltip: post.title,
+            color: "#22272e"
+          }
+        end
+      %>
     </div>
   </div>
 </div>
