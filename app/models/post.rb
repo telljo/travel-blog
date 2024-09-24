@@ -19,6 +19,8 @@ class Post < ApplicationRecord
 
   after_validation :geocode, if: :address_changed?
 
+  scope :with_location, -> { where.not(latitude: nil, longitude: nil) }
+
   def image_as_thumbnail
     return unless image.content_type.in?(%w[image/jpeg image/png])
 
