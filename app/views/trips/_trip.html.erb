@@ -1,45 +1,30 @@
-<div class="trip">
-  <div class="trip__content" id="<%= dom_id trip %>">
-    <div class="trip__header">
-      <% if local_assigns[:has_link_header] %>
-        <%= link_to trip_path(trip), data: { turbo_frame: "_top" } do %>
-          <h2 class="text__link"><%= trip.name %></h2>
-        <% end %>
-      <% else %>
-        <h2><%= trip.name %></h2>
+<div class="trip__content" id="<%= dom_id trip %>">
+  <div class="trip__header">
+    <% if local_assigns[:has_link_header] %>
+      <%= link_to trip_path(trip), data: { turbo_frame: "_top" } do %>
+        <h2 class="text__link"><%= trip.name %></h2>
       <% end %>
-    </div>
-    <div class="trip__body-header">
-      <% if trip.created_at.to_i == trip.updated_at.to_i %>
-        <p>
-          <%=
-            link_to trip.user.username,
-            url_for(
-              controller: '/users',
-              action: 'show',
-              username: trip.user.username
-            ),
-            class: "text__link",
-            data: { turbo_frame: "_top" }
-          %>
-          created this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %>
-        </p>
-      <% else %>
-        <p>
-          <%=
-            link_to trip.user.username,
-            url_for(
-              controller: '/users',
-              action: 'show',
-              username: trip.user.username
-            ),
-            class: "text__link",
-            data: { turbo_frame: "_top" }
-          %>
-          edited this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %></p>
-      <% end %>
+    <% else %>
+      <h1><%= trip.name %></h1>
+    <% end %>
+  </div>
+  <div class="trip__body-header">
+    <p>
+      <%=
+        link_to trip.user.username,
+        url_for(
+          controller: '/users',
+          action: 'show',
+          username: trip.user.username
+        ),
+        class: "text__link",
+        data: { turbo_frame: "_top" }
+      %>
+      started this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %>
+    </p>
 
-      <% if current_user == trip.user %>
+    <% if current_user == trip.user %>
+      <span class="trip__actions">
         <div class="dropdown" data-controller="dropdown"
           data-action="click->dropdown#toggle click@window->dropdown#hide"
           data-dropdown-target="checkbox"
@@ -61,17 +46,17 @@
                 class: "dropdown__menu-item dropdown__menu-item--danger" %>
           </div>
         </div>
-      <% end %>
-    </div>
-    <div class="trip__body">
-      <p><%= trip.description  %></p>
-      <div
-        data-controller="map"
-        data-map-target="map"
-        id="posts-map"
-        data-points='<%= raw generated_trip_points(trip) %>'
-        style="width: 100%; height: 500px;">
-      </div>
+      </span>
+    <% end %>
+  </div>
+  <div class="trip__body">
+    <%= trip.body %>
+    <div
+      class="trip__map"
+      data-controller="map"
+      data-map-target="map"
+      id="posts-map"
+      data-points='<%= raw generated_points(trip) %>'>
     </div>
   </div>
 </div>

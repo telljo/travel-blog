@@ -9,43 +9,11 @@
       </div>
     </div>
 
-    <div class="trip__body-header">
-      <% if trip.persisted? %>
-        <% if trip.created_at === trip.updated_at %>
-          <p>
-            <%=
-              link_to trip.user.username,
-              url_for(
-                controller: '/users',
-                action: 'show',
-                username: trip.user.username
-              ),
-              class: "text__link",
-              data: { turbo_frame: "_top" }
-            %>
-            created this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %>
-          </p>
-        <% else %>
-          <p>
-            <%=
-              link_to trip.user.username,
-              url_for(
-                controller: '/users',
-                action: 'show',
-                username: trip.user.username
-              ),
-              class: "text__link",
-              data: { turbo_frame: "_top" }
-            %>
-            edited this trip on <%= trip.updated_at&.strftime("%B %d, %Y") %></p>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="trip__body form__field">
-      <%= form.text_area :description,
-        placeholder: "Add a description",
-        class: "form__input form__input--dark form__input--body" %>
+    <div class="form__field trip__form-body">
+      <%= form.rich_text_area :body,
+        placeholder: "Add a trip description",
+        class: "form__input form__input--dark form__input--body",
+        size: "30x3", required: true %>
     </div>
 
     <div class="form__actions">

@@ -1,7 +1,7 @@
 .post {
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  margin-bottom: 1.5em;
 
   &__content {
     margin: 0;
@@ -10,10 +10,13 @@
     flex-direction: column;
   }
 
+  &__actions {
+    height: 2em;
+  }
+
   &__body-header {
     color: var(--color-muted);
     display: flex;
-    height: 2.8em;
     flex-direction: row;
     justify-content: space-between;
     padding: 0.5em 0.6em;
@@ -89,6 +92,11 @@
     padding: 0.7em 0;
 
     &--column {
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    @media (max-width: 768px) {
       flex-direction: column;
       gap: 0.5em;
     }

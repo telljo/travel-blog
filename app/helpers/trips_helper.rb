@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module TripsHelper
-  def generated_trip_points(trip)
+  def generated_points(trip)
     trip.posts.with_location.order(created_at: :desc).map do |post|
       {
         latitude: post.latitude,

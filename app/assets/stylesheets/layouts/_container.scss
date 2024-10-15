@@ -53,4 +53,12 @@
     margin-top: 0;
     margin-bottom: var(--space-s);
   }
+
+  &--wide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 2em;
+  }
 }

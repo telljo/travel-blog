@@ -9,6 +9,7 @@ export default class extends Controller {
 
     const mapElement = this.mapTarget;
     const points = JSON.parse(mapElement.dataset.points);
+    console.log(points)
     const firstPoint = points[0];
 
     const map = new mapboxgl.Map({
@@ -21,7 +22,7 @@ export default class extends Controller {
     points.forEach(point => {
       new mapboxgl.Marker()
         .setLngLat([point.longitude, point.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(point.label))
+        .setPopup(new mapboxgl.Popup().setHTML(point.tooltip))
         .addTo(map);
     });
 

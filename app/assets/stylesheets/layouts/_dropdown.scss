@@ -1,8 +1,7 @@
 .dropdown {
-  width: 3em;
   display: flex;
+  width: 3em;
   flex-direction: column;
-  height: fit-content;
   align-items: center;
 
   .dropdown__menu {

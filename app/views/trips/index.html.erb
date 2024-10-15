@@ -1,32 +1,36 @@
-<div class="header">
-  <span>
-    <h1>Trips</h1>
-    <p>Explore peoples trips through simple posts with an image.</p>
-  </span>
-  <% if user_signed_in? %>
-    <%= link_to "Create new trip",
-                new_trip_path,
-                class: "btn btn--green",
-                data: { turbo_frame: dom_id(Trip.new) } %>
+<div class="container container--no_style">
+  <div class="header">
+    <span>
+      <h1>Trips</h1>
+      <p>Explore peoples trips through simple posts with an image.</p>
+    </span>
+    <% if user_signed_in? %>
+      <%= link_to "Create new trip",
+                  new_trip_path,
+                  class: "btn btn--green",
+                  data: { turbo_frame: dom_id(Trip.new) } %>
 
-  <% else %>
-    <%= link_to "Create new trip",
-                new_user_registration_path,
-                class: "btn btn--green",
-                data: { turbo_frame: "_top" } %>
+    <% else %>
+      <%= link_to "Create new trip",
+                  new_user_registration_path,
+                  class: "btn btn--green",
+                  data: { turbo_frame: "_top" } %>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag Trip.new do %>
+    <% if @trips.none? %>
+        <%= render "trips/empty_state" %>
+      <% end %>
+  <% end %>
+
+  <%= turbo_stream_from @trips %>
+
+  <%= turbo_frame_tag "trips" do %>
+    <% @trips.order(created_at: :desc).each do |trip| %>
+      <%= turbo_frame_tag dom_id(trip) do %>
+        <%= render partial: 'trips/trip', locals: { trip: trip, has_link_header: true } %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
-
-<%= turbo_frame_tag Trip.new do %>
-  <% if @trips.none? %>
-      <%= render "trips/empty_state" %>
-    <% end %>
-<% end %>
-
-<%= turbo_stream_from @trips %>
-
-<%= turbo_frame_tag "trips" do %>
-  <% @trips.order(created_at: :desc).each do |trip| %>
-    <%= render partial: 'trips/trip', locals: { trip: trip, has_link_header: true } %>
-  <% end %>
-<% end %>
