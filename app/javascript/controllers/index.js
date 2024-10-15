@@ -13,6 +13,9 @@ application.register("geolocation", GeolocationController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MapController from "./map_controller"
+application.register("map", MapController)
+
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 

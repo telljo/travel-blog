@@ -65,19 +65,13 @@
     </div>
     <div class="trip__body">
       <p><%= trip.description  %></p>
-      <%= js_map(trip.posts.with_location.map do |post|
-        {
-          latitude: post.latitude,
-          longitude: post.longitude,
-          label: post.title,
-          tooltip: html_link_to(post)
-        }
-      end,
-        id: "posts-map",
-        tooltips: {hover: false, html: true},
-        zoom: 4,
-        controls: true)
-      %>
+      <div
+        data-controller="map"
+        data-map-target="map"
+        id="posts-map"
+        data-points='<%= raw generated_trip_points(trip) %>'
+        style="width: 100%; height: 500px;">
+      </div>
     </div>
   </div>
 </div>

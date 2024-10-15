@@ -14,7 +14,15 @@ class TripsController < ApplicationController
   end
 
   # GET /trips/1 or /trips/1.json
-  def show; end
+  def show
+    @points = @trip.posts.with_location.map do |post|
+      {
+        latitude: post.latitude,
+        longitude: post.longitude,
+        label: post.title
+      }
+    end
+  end
 
   # GET /trips/new
   def new
