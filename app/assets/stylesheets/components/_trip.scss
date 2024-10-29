@@ -1,28 +1,66 @@
 .trip {
-  &__map {
+  .trip__desktop-header {
+    @media (max-width: 1400px) {
+      display: none;
+    }
+  }
+
+  .trip__mobile-header {
+    display: none;
+    @media (max-width: 1400px) {
+      display: flex;
+    }
+  }
+
+  .trip__header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em
+  }
+
+  .trip__map {
     width: 100%;
     height: 500px;
     border-radius: 1em;
   }
 
-  &__posts {
-    width: 100%;
-    margin-top: 3em;
-  }
-
-  &__layout {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5em;
-    width: 100%;
-    margin-top: 2em;
+  .trip__large-map {
+    position: fixed;
+    right: 2.5em;
+    width: 36.5%;
+    border-radius: 1em;
+    height: 500px;
 
     @media (max-width: 1400px) {
-      flex-direction: column;
+      position: sticky;
+      width: 100%;
     }
   }
 
-  &__content {
+  .trip__posts {
+    width: 60%;
+    @media (max-width: 1400px) {
+      width: 100%;
+    }
+  }
+
+  .trip__layout {
+    display: flex;
+    padding-top: 2em;
+    flex-direction: row;
+    width: 100%;
+    gap: 2em;
+
+    @media (max-width: 1400px) {
+      display: flex;
+      flex-direction: column-reverse;
+      padding: 1em;
+      padding-top: 1em;
+      gap: 1em;
+    }
+  }
+
+  .trip__content {
     margin: 0;
     outline: none;
     display: flex;
@@ -34,14 +72,14 @@
     }
   }
 
-  &__header {
+  .trip__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0.7em 0;
   }
 
-  &__body {
+  .trip__body {
     display: flex;
     flex-direction: column;
     padding: 0.5em 0.6em;
@@ -60,11 +98,11 @@
     }
   }
 
-  &__actions {
+  .trip__actions {
     height: 2em;
   }
 
-  &__body-header {
+  .trip__body-header {
     color: var(--color-muted);
     display: flex;
     flex-direction: row;

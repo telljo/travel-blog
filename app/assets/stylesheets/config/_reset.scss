@@ -12,12 +12,12 @@
 }
 
 html {
-  overflow-y: scroll;
   height: 100%;
 }
 
 body {
   display: flex;
+  overscroll-behavior-y: none;
   flex-direction: column;
   min-height: 100%;
 

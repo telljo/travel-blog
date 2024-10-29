@@ -1,5 +1,5 @@
 <div class="container container--no_style">
-  <div class="header">
+  <div class="header header--with-padding">
     <span>
       <h1>Trips</h1>
       <p>Explore peoples trips through simple posts with an image.</p>
@@ -28,8 +28,13 @@
 
   <%= turbo_frame_tag "trips" do %>
     <% @trips.order(created_at: :desc).each do |trip| %>
-      <%= turbo_frame_tag dom_id(trip) do %>
-        <%= render partial: 'trips/trip', locals: { trip: trip, has_link_header: true } %>
+      <%= turbo_frame_tag dom_id(trip), class: "trip" do %>
+        <%= render partial: 'trips/trip',
+          locals: {
+            trip: trip,
+            has_link_header: true
+          }
+        %>
       <% end %>
     <% end %>
   <% end %>

@@ -1,24 +1,17 @@
 <div class="trip container container--no_style container--wide">
   <div class="trip__layout">
-    <%= turbo_frame_tag dom_id(@trip) do %>
-      <%= render partial: @trip,
-        locals: { has_link_header: false } %>
-    <% end %>
-
     <div class="trip__posts">
-      <div class="header">
-        <h2>Posts</h2>
-        <span>
-          <%= link_to "Back", trips_url,
-                class: "btn btn--light",
-                data: { turbo_frame: "_top" } %>
-          <% if current_user == @trip.user %>
-            <%= link_to "Create new post",
-              new_post_path(trip_id: @trip.id),
-              class: "btn btn--green",
-              data: { turbo_frame: dom_id(Post.new) } %>
-          <% end %>
+      <div class="header trip__desktop-header">
+        <span class="trip__header-content">
+          <h1><%= @trip.name %></h1>
+          <%= @trip.body %>
         </span>
+        <% if current_user == @trip.user %>
+          <%= link_to "Create new post",
+            new_post_path(trip_id: @trip.id),
+            class: "btn btn--green",
+            data: { turbo_frame: dom_id(Post.new) } %>
+        <% end %>
       </div>
 
       <%= turbo_frame_tag Post.new do %>
@@ -31,6 +24,25 @@
 
       <%= turbo_frame_tag "posts" do %>
         <%= render @trip.posts.order(created_at: :desc) %>
+      <% end %>
+    </div>
+    <div
+      class="trip__large-map"
+      data-controller="map"
+      data-map-target="map"
+      id="posts-map"
+      data-points='<%= raw generated_points(@trip) %>'>
+    </div>
+    <div class="header trip__mobile-header">
+      <span class="trip__header-content">
+        <h1><%= @trip.name %></h1>
+        <%= @trip.body %>
+      </span>
+      <% if current_user == @trip.user %>
+        <%= link_to "Create new post",
+          new_post_path(trip_id: @trip.id),
+          class: "btn btn--green",
+          data: { turbo_frame: dom_id(Post.new) } %>
       <% end %>
     </div>
   </div>

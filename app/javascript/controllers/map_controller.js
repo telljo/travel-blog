@@ -5,11 +5,10 @@ export default class extends Controller {
   static targets = ["map"];
 
   connect() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoidGVsbGpvIiwiYSI6ImNtMHRmY3FtcjB1YnYya29nMHQzZ2J5aGgifQ.rBZuXyl3wbJcIjGEQNtzAA';
+    mapboxgl.accessToken = 'pk.eyJ1IjoidGVsbGpvIiwiYSI6ImNtMnU0d2N5NzBhbXAyaXB4Ym1tM3A2cnMifQ.CxCQDXvDYdTte4eXrsvRhA';
 
     const mapElement = this.mapTarget;
     const points = JSON.parse(mapElement.dataset.points);
-    console.log(points)
     const firstPoint = points[0];
 
     const map = new mapboxgl.Map({
@@ -22,7 +21,7 @@ export default class extends Controller {
     points.forEach(point => {
       new mapboxgl.Marker()
         .setLngLat([point.longitude, point.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(point.tooltip))
+        .setPopup(new mapboxgl.Popup().setHTML(point.label))
         .addTo(map);
     });
 
@@ -51,8 +50,6 @@ export default class extends Controller {
         },
         'paint': {
           'line-color': '#fff',
-          'line-width': 2,
-          'line-dasharray': [2, 2]
         }
       });
     });

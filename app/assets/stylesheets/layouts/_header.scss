@@ -4,7 +4,10 @@
   flex-direction: row;
   justify-content: space-between;
   gap: var(--space-s);
-  margin-top: var(--space-l);
   margin-bottom: var(--space-xs);
   align-items: center;
+
+  &--with-padding {
+    padding-top: var(--space-xl);
+  }
 }

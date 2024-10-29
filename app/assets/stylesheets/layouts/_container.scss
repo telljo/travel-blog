@@ -60,5 +60,9 @@
     align-items: center;
     max-width: 100%;
     padding: 0 2em;
+
+    @media (max-width: 1400px) {
+      padding: 0 1em;
+    }
   }
 }
