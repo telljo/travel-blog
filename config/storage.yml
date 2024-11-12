@@ -21,7 +21,7 @@ local:
 #   credentials: <%= Rails.application.credentials.dig(:gcskey) %>
 #   bucket: travel-blog-josh
 
-google_dev:
+google:
   service: GCS
   project: travel-blog
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'] %>

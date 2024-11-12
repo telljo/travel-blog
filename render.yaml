@@ -1,0 +1,21 @@
+databases:
+  - name: travel-blod
+    type: postgres
+    user: postgres
+    password: password
+
+services:
+  - type: web
+    name: travel-blog
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec rails server"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: travel-blog
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync:false- key: WEB_CONCURRENCY
+        value: 2
