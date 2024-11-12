@@ -26,6 +26,7 @@ google:
   project: travel-blog
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'] %>
   bucket: travel-blog-josh
+  public: true
 
 # Use bin/rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
