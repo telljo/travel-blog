@@ -27,6 +27,9 @@
 @import "components/icon";
 @import "components/search";
 
+@import "trix/dist/trix";
+@import "./actiontext.css";
+
 // Layouts
 @import "layouts/container";
 @import "layouts/header";
